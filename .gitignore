@@ -1,0 +1,19 @@
+# Root-level dependencies (client/ and server/ have their own .gitignore)
+/node_modules
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+# Claude Code: local-only, third-party skill bundles (regenerate with
+# `npx ui-ux-pro-max-cli init --ai claude`) — not project source.
+.claude/skills/
