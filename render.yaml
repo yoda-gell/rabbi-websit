@@ -1,0 +1,57 @@
+databases:
+  - name: rabbi-websit-db
+    plan: free
+    region: oregon
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: rabbi-websit-server
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: server
+    buildCommand: npm install && npx prisma generate && npm run build
+    preDeployCommand: npx prisma migrate deploy
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_VERSION
+        value: 24.18.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rabbi-websit-db
+          property: connectionString
+      - key: ADMIN_API_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: CONTACT_TO_EMAIL
+        sync: false
+      - key: CONTACT_FROM_EMAIL
+        sync: false
+
+  - type: web
+    name: rabbi-websit-client
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: client
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 24.18.0
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_SESSION_SECRET
+        sync: false
+      - key: ADMIN_API_SECRET
+        sync: false
+      - key: NEST_API_URL
+        sync: false

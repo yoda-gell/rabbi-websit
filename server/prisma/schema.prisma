@@ -1,0 +1,39 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Question {
+  id                      String    @id @default(uuid())
+  askerName               String?
+  askerEmail              String
+  wantsPublishedAnonymous Boolean   @default(false)
+  question                String
+  answer                  String?
+  isPublished             Boolean   @default(false)
+  status                  String    @default("PENDING")
+  labels                  String[]
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  deletedAt               DateTime?
+}
+
+enum VideoType {
+  REGULAR
+  SHORT
+}
+
+model Video {
+  id          String    @id @default(uuid())
+  title       String
+  youtubeId   String
+  type        VideoType
+  isPublished Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}

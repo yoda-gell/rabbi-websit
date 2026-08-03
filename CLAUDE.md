@@ -105,12 +105,15 @@ Action, etc.) is still an open decision — don't assume this guard is productio
 ### Known environment quirk — Turbopack crash
 This repo's path contains Hebrew characters (`שולחן העבודה`). Next 16's default Turbopack build/dev **panics** on non-ASCII path characters (Rust char-boundary bug, unrelated to app code). `client/package.json`'s `dev`/`build` scripts already pass `--webpack` to work around this — don't remove that flag, and don't "fix" a Turbopack crash by touching app code.
 
-### Known repo quirk — nested `server/.git`
-`server/` contains its own empty, zero-commit, no-remote `.git` directory (leftover from the
-`nest new` scaffolder), which makes the root repo see `server/` as an uncommittable embedded
-repo (`git add` silently skips its tracked-file state). This has never been cleaned up — the
-user has not confirmed deleting it. Don't delete it unilaterally; ask first if committing
-backend changes becomes blocked by this.
+### Resolved repo quirk — nested `server/.git` (fixed, deployment prep)
+`server/` used to contain its own separate, no-remote `.git` directory (leftover from the
+`nest new` scaffolder), which made the root repo see `server/` as an uncommittable embedded
+repo (`git add` silently skipped its tracked-file state). This was cleaned up with explicit
+user approval as part of getting the repo ready to push to GitHub/deploy on Render:
+`server/.git` was deleted (it had no remote and its one commit matched the working tree
+exactly, so nothing was lost) and `server/`'s ~40 files were added into the main repo's
+history for the first time. `server/` is now tracked normally alongside `client/` — no
+special handling needed going forward.
 
 ### `.gitignore` layering
 Root `.gitignore` + `client/.gitignore` + `server/.gitignore` are independently maintained (no
