@@ -1,9 +1,8 @@
 import Link from "next/link";
 import VideoCard from "@/components/VideoCard";
-import BookCard from "@/components/BookCard";
 import FaqAccordion from "@/components/FaqAccordion";
 import YouTubeHero from "@/components/YouTubeHero";
-import { books, donationPresets, heroVideo } from "@/lib/content";
+import { donationPresets, heroVideo } from "@/lib/content";
 import { getPublishedQuestions } from "@/lib/questions";
 import { getPublishedVideos } from "@/lib/videos";
 
@@ -120,21 +119,6 @@ export default async function Home() {
               לפנייה
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Books */}
-      <section className="py-8">
-        <div className="mb-4 flex items-baseline justify-between">
-          <h2 className="font-heading text-2xl font-bold md:text-3xl">ספרי הרב</h2>
-          <Link href="/tmicha" className="font-heading text-sm font-semibold text-amber">
-            לכל הספרים
-          </Link>
-        </div>
-        <div className="no-scrollbar -mx-5 flex gap-3 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0">
-          {books.map((book) => (
-            <BookCard key={book.id} book={book} className="w-[132px] shrink-0 md:w-auto" />
-          ))}
         </div>
       </section>
 

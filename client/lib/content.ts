@@ -15,20 +15,6 @@ export type Faq = {
   tags: string[];
 };
 
-export type Book = {
-  id: string;
-  title: string;
-  subtitle: string;
-  price: number;
-};
-
-export const books: Book[] = [
-  { id: "lev-chadash", title: "לב חדש", subtitle: "על תשובה בגובה העיניים", price: 48 },
-  { id: "or-balaila", title: "אור בלילה", subtitle: "חיזוקים לזמנים קשים", price: 52 },
-  { id: "derech-habaita", title: "דרך הביתה", subtitle: "שיחות עם בני נוער", price: 45 },
-  { id: "maamin-bach", title: "מאמין בך", subtitle: "על כוחה של קימה", price: 55 },
-];
-
 export const donationPresets = [
   { amount: 26, label: "שיחה לנער אחד" },
   { amount: 104, label: "סרטון חיזוק חדש", featured: true },
