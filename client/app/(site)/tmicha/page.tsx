@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import BookCard from "@/components/BookCard";
-import { books, donationLink, donationPresets } from "@/lib/content";
+import { donationLink, donationPresets } from "@/lib/content";
 
 export default function TmichaPage() {
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
@@ -92,16 +92,15 @@ export default function TmichaPage() {
           </span>
           <span>תשלום מאובטח · קבלה במייל</span>
         </div>
+        <p className="mt-4 text-center text-xs leading-relaxed text-text-faint">
+          התשלום מתבצע ומאובטח במלואו באתר החיצוני של נדרים פלוס — אין באתר זה
+          כל שמירה של פרטי אשראי או תשלום. ראו{" "}
+          <Link href="/privacy" className="font-semibold text-amber">
+            מדיניות פרטיות
+          </Link>
+          .
+        </p>
       </div>
-
-      <section className="mt-10">
-        <h2 className="mb-3 font-heading text-2xl font-bold">ספרי הרב</h2>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {books.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
-        </div>
-      </section>
     </div>
   );
 }

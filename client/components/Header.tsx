@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -7,7 +8,6 @@ const navItems = [
   { href: "/", label: "בית" },
   { href: "/shiurim", label: "ספריית הנשמה" },
   { href: "/shaalot", label: "שו״ת אנונימי" },
-  { href: "/tmicha", label: "ספרי הרב" },
 ];
 
 export default function Header() {
@@ -17,9 +17,13 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b border-white/5 bg-ink/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-16">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber font-heading text-lg font-extrabold text-ink">
-            י
-          </span>
+          <Image
+            src="/images/rav-portrait.jpg"
+            alt="הרב יעקב זיסהולץ"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full object-cover"
+          />
           <span className="font-heading text-base font-bold leading-tight">
             הרב יעקב זיסהולץ
           </span>
